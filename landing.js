@@ -5,7 +5,7 @@ if (Meteor.isClient) {
       // template data, if any, is available in 'this'
       e.preventDefault();
 
-      var email = template.find('#news-email').value;
+      var email = template.find('#email-input').value;
       Meteor.call('newsletter', email, displayMessage);     
     }
   });

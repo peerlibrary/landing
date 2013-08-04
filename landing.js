@@ -4,20 +4,9 @@ if (Meteor.isClient) {
     'click input#news-submit' : function (e, template) {
       // template data, if any, is available in 'this'
       e.preventDefault();
-
       var email = template.find('#email-input').value;
-
-      var onValidate = function(error, result) {
-        if (error) {
-          Session.set('errorMessage', error.reason);
-        }
-        else {
-          Session.set('sending', true);
-          Meteor.call('subscribe', email, displayMessage);
-        }
-      };
-
-      Meteor.call('validate', email, onValidate);
+      Meteor.call('subscribe', email, displayMessage);
+      Session.set('sending', true);
     }
   });
 
@@ -57,17 +46,15 @@ if (Meteor.isServer) {
   });
 
   Meteor.methods({
-    validate: function(email) {
+
+    subscribe: function(email) {
       var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       var valid = re.test(email);
 
       if (!valid) {
         throw new Meteor.Error(400, 'Please enter a valid email address.');
       }
-      return true;
-    },
 
-    subscribe: function(email) {
       Meteor.http.post(
         'http://lists.peerlibrary.org/lists',
         {

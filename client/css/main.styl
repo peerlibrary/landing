@@ -39,6 +39,10 @@ textarea
   background #ccc
   color #000
   padding 0.2em 0
+
+// newsletter signup
+.newsletter
+  margin 55px auto 50px auto
 .news-header
   font-weight bold
   font-size 20px
@@ -48,19 +52,19 @@ textarea
   background-color rgba(179, 212, 252, 0.3)
   border 1px solid #bfc8d4
   border-radius 4px
-  margin-bottom 50px
-  margin-right auto
-  margin-left auto
+  margin: 0 auto
   padding 20px
   width 500px
 #news-email
   display inline-block
   text-align left
   width 280px
+  vertical-align top
 #email-input, #news-submit
   box-sizing border-box
   height 40px
 #email-input
+  border 0
   padding-left 10px
   width 270px
 #news-submit
@@ -70,10 +74,19 @@ textarea
   display inline-block
   padding 10px
   vertical-align top
+.sending
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, 0.75)
 .error
-  color #b92222
+  color #cc5200
+  margin-top 10px
 .success
-  color #b92222 //#6f4320
+  color #cc5200
+
 a 
   color #87939c
   text-decoration none

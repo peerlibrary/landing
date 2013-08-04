@@ -20,28 +20,30 @@
 </body>
 
 <template name="newsletter">
-  <header class="news-header">
-    Get updates on PeerLibrary’s progress
-  </header>
-  <div class="newsletter-signup">
-    {{#if notSuccess}}
-      <form class="news">
-        <input type="hidden" value="news" name="list">
-        <input type="hidden" value="subrequest" name="action">
-        <input type="hidden" value="subscribe" name="action_subrequest">
-        <div id="news-email">
-          <input type="text" id="email-input" size="25" name="email" placeholder="Your email address">
-          {{#if errorMessage }}
-            <span class="message error">{{errorMessage}}</span>
-          {{/if}}
-        </div> 
-        <input id="news-submit" type="submit" value="Notify Me">
-      </form>
-    {{/if}}
-    {{#if successMessage}}
-      <div class="message success">
-        {{successMessage}}
-      </div>
-    {{/if}}
+  <div class="newsletter">
+    <header class="news-header">
+      Receive updates on PeerLibrary’s progress
+    </header>
+    <div class="newsletter-signup">
+      {{#if notSuccess}}
+        <form class="news">
+          <div id="news-email">
+            <input type="text" id="email-input" size="25" name="email" placeholder="Your email address">
+            {{#if errorMessage }}
+              <div class="message error">{{errorMessage}}</div>
+            {{/if}}
+          </div> 
+          <input id="news-submit" type="submit" value="Notify Me">
+        </form>
+      {{/if}}
+      {{#if successMessage}}
+        <div class="message success">
+          {{successMessage}}
+        </div>
+      {{/if}}
+    </div>
   </div>
+  {{#if sending}}
+    <div class="sending"> </div>
+  {{/if}}
 </template>

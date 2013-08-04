@@ -20,21 +20,28 @@
 </body>
 
 <template name="newsletter">
-
+  <header class="news-header">
+    Get updates on PeerLibrary’s progress
+  </header>
   <div class="newsletter-signup">
     {{#if notSuccess}}
       <form class="news">
         <input type="hidden" value="news" name="list">
         <input type="hidden" value="subrequest" name="action">
         <input type="hidden" value="subscribe" name="action_subrequest">
-        <label for="news-email" class="tS">Sign up for early access</label>
-        <br><br>
-        <input type="text" id="news-email" size="25" name="email" placeholder="Your email address"> <input id="news-submit" type="submit" value="Subscribe">
+        <div id="email-input">
+          <input type="text" id="news-email" size="25" name="email" placeholder="Your email address">
+          {{#if errorMessage }}
+            <span class="message error">{{errorMessage}}</span>
+          {{/if}}
+        </div> 
+        <input id="news-submit" type="submit" value="Notify Me">
       </form>
     {{/if}}
-
-    {{#if message }}
-      <span class="message {{messageClass}}">{{message}}</span>
+    {{#if successMessage}}
+      <div class="message success">
+        {{successMessage}}
+      </div>
     {{/if}}
   </div>
 </template>

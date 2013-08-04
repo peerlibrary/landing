@@ -12,28 +12,25 @@ if (Meteor.isClient) {
 
   var displayMessage = function(error, result) {
     if (error) {
-      Session.set('message', error.reason);
-      Session.set('messageClass', 'error');
+      Session.set('errorMessage', error.reason);
     }
     else if (result) {
-      Session.set('message', 'Thanks! A message was sent to validate your subscription.');
-      Session.set('messageClass', 'success');
+      Session.set('successMessage', 'Thanks! A message was sent to validate your subscription.');
     }
     else {
-      Session.set('message', 'Something went wrong. Please try again or contact us.');
-      Session.set('messageClass', 'error');
+      Session.set('errorMessage', 'Something went wrong. Please try again or contact us.');
     }
   };
 
   Template.newsletter.helpers({
-    message: function() {
-      return Session.get('message');
+    errorMessage: function() {
+      return Session.get('errorMessage');
     },
-    messageClass: function() {
-      return Session.get('messageClass');
+    successMessage: function() {
+      return Session.get('successMessage');
     },
     notSuccess: function() {
-      return Session.get('messageClass') !== 'success';
+      return !Session.get('successMessage');r
     }
   });
 }
